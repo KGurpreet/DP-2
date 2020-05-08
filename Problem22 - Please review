@@ -1,0 +1,21 @@
+// Time Complexity :O(mn)
+// Space Complexity :O(m)
+// Did this code successfully run on Leetcode :Yes
+
+class Solution {
+    func change(_ amount: Int, _ coins: [Int]) -> Int {
+        guard amount > 0 else {
+            return 1
+        }
+        var table = Array(repeating:0,count:amount+1)
+        table[0] = 1
+        for coin in coins  {
+            for i in 1...amount {
+                if i >= coin {
+                    table[i] += table[i - coin]
+                }
+            }
+        }
+        return table[amount]
+    }
+}
